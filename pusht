@@ -1,0 +1,10 @@
+#!/bin/sh
+#shellcheck disable=SC2015
+[ $# -ne 1 ] && echo "Usage: pusht <commit_msg>" && exit 1 ||
+    {
+        new_tag=$(tag)
+        echo "New tag: ${new_tag}"
+        git commit -m "$1"
+        git tag -a "${new_tag}" -m "$1"
+        git push --follow-tags
+    }
