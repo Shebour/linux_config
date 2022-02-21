@@ -106,7 +106,7 @@ alias upgrade='s apt update && s apt upgrade'
 alias install='s apt install'
 alias remove='s apt remove'
 alias gdb='gdb -q'
-alias rip='sudo reboot'
+alias rip='s reboot'
 alias gls='g ls'
 alias glold='g lold'
 alias vg='valgrind --tool=memcheck --leak-check=yes --show-reachable=yes'
@@ -115,3 +115,4 @@ alias gcc_asan='gcc -g -fsanitize=address -Wall -Wextra -Werror -pedantic -std=c
 source $ZSH/oh-my-zsh.sh
 export PGDATA="$HOME/postgres_data"
 export PGHOST="/tmp"
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/hugo/.local/bin:/usr/lib/postgresql/13/bin
