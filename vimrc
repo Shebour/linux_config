@@ -7,11 +7,8 @@ call plug#begin()
 """""""""""""""""""""""
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
-Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
-Plug 'morhetz/gruvbox'
-""Plug 'valloric/youcompleteme'
 Plug 'flazz/vim-colorschemes'
 Plug 'rhysd/vim-clang-format'
 Plug 'sheerun/vim-polyglot'
@@ -75,10 +72,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:ycm_autoclose_preview_window_after_completion=1
 let g:clang_library_path='/usr/lib64/libclang.so.3.8'
-
+let g:clang_format#auto_format = 1
 autocmd FileType c ClangFormatAutoEnable
+autocmd FileType cc ClangFormatAutoEnable
+autocmd FileType h ClangFormatAutoEnable
+autocmd FileType hh ClangFormatAutoEnable
+autocmd FileType hxx ClangFormatAutoEnable
 syntax on
 " CoC
 set hidden

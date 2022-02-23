@@ -99,20 +99,26 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-command neofetch | lolcat
+#command neofetch | lolcat
 
 alias s=sudo
 alias upgrade='s apt update && s apt upgrade'
 alias install='s apt install'
 alias remove='s apt remove'
 alias gdb='gdb -q'
-alias rip='s reboot'
+alias rip='sudo reboot'
 alias gls='g ls'
 alias glold='g lold'
+alias ssh_vps='kitty +kitten ssh hugo@45.90.161.135'
 alias vg='valgrind --tool=memcheck --leak-check=yes --show-reachable=yes'
 alias gcc_flags='gcc -g -Wall -Werror -Wextra -pedantic -std=c99'
+alias g++_flags='g++ -g -std=c++20 -Wall -Werror -Wextra -pedantic'
+alias g++_asan='g++ -g -fsanitize=address -std=c++20 -Wall -Wextra -Werror -pedantic'
 alias gcc_asan='gcc -g -fsanitize=address -Wall -Wextra -Werror -pedantic -std=c99'
+alias autoremove='s apt autoremove'
 source $ZSH/oh-my-zsh.sh
 export PGDATA="$HOME/postgres_data"
 export PGHOST="/tmp"
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/hugo/.local/bin:/usr/lib/postgresql/13/bin
+command echo "Hello Shebour!" | cowsay | lolcat
+
