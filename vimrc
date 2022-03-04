@@ -13,6 +13,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'rhysd/vim-clang-format'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim'
+Plug 'calincru/flex-bison-syntax'
 """""""""""""""""""""""
 "" End of plugin list
 """""""""""""""""""""""
