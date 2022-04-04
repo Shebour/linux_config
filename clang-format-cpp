@@ -1,80 +1,28 @@
-AccessModifierOffset: -4
-AlignAfterOpenBracket: Align
-AlignConsecutiveAssignments: false
-AlignConsecutiveDeclarations: false
-AlignEscapedNewlines: Right
-AlignOperands: false
-AlignTrailingComments: false
-AllowAllParametersOfDeclarationOnNextLine: false
-AllowShortBlocksOnASingleLine: false
-AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
-AllowShortIfStatementsOnASingleLine: false
-AlwaysBreakAfterReturnType: None
-AlwaysBreakBeforeMultilineStrings: false
-AlwaysBreakTemplateDeclarations: Yes
-BinPackArguments: true
-BinPackParameters: true
-BraceWrapping:
-    AfterEnum: true
-    AfterClass: true
-    AfterControlStatement: true
-    AfterFunction: true
-    AfterNamespace: true
-    AfterStruct: true
-    AfterUnion: true
-    AfterExternBlock: true
-    BeforeCatch: true
-    BeforeElse: true
-    IndentBraces: false
-    SplitEmptyFunction: false
-    SplitEmptyRecord: false
-    SplitEmptyNamespace: false
-BreakBeforeBinaryOperators: NonAssignment
-BreakBeforeBraces: Custom
-BreakBeforeTernaryOperators: true
-BreakConstructorInitializers: BeforeComma
-BreakInheritanceList: BeforeComma
-BreakStringLiterals: true
-ColumnLimit: 80
-CompactNamespaces: false
-ConstructorInitializerAllOnOneLineOrOnePerLine: false
-ConstructorInitializerIndentWidth: 4
-Cpp11BracedListStyle: false
-DerivePointerAlignment: false
-FixNamespaceComments: true
-ForEachMacros: ['ILIST_FOREACH', 'ILIST_FOREACH_ENTRY']
-IncludeBlocks: Regroup
-IncludeCategories:
-    - Regex: '<.*>'
-      Priority: 1
-    - Regex: '.*'
-      Priority: 2
-IndentCaseLabels: false
-IndentPPDirectives: AfterHash
-IndentWidth: 4
-IndentWrappedFunctionNames: false
-KeepEmptyLinesAtTheStartOfBlocks: false
-Language: Cpp
-NamespaceIndentation: All
-PointerAlignment: Left
-ReferenceAlignment: Left
-ReflowComments: true
-SortIncludes: true
-SortUsingDeclarations: false
-SpaceAfterCStyleCast: false
-SpaceAfterTemplateKeyword: true
-SpaceBeforeAssignmentOperators: true
-SpaceBeforeCpp11BracedList: false
-SpaceBeforeCtorInitializerColon: true
-SpaceBeforeParens: ControlStatements
-SpaceBeforeRangeBasedForLoopColon: true
-SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 1
-SpacesInAngles: false
-SpacesInCStyleCastParentheses: false
-SpacesInContainerLiterals: false
-SpacesInParentheses: false
-SpacesInSquareBrackets: false
-TabWidth: 4
-UseTab: Never
+#!/bin/sh
+# This script checks a git repository has a clang-format configuration and runs
+# clang-format with the given parameters.
+#shellcheck disable=SC2059
+#shellcheck disable=SC2145
+
+die() {
+    printf "\033[0;31m${@}\033[0m\n"
+    exit 1
+}
+
+repo="$(/bin/git rev-parse --show-toplevel 2>/dev/null)"
+if test "$?" -ne 0; then
+    die "You must run this script from the work tree of a git repository"
+fi
+
+clang_format_file="${repo}/.clang-format"
+
+if ! test -f "${clang_format_file}"; then
+    die "Failed to find clang-format configuration at ${clang_format_file}"
+fi
+
+find "$repo" -type f -name '*.cc' -exec /bin/clang-format --style=file -i {} ';'
+find "$repo" -type f -name '*.hh' -exec /bin/clang-format --style=file -i {} ';'
+find "$repo" -type f -name '*.hxx' -exec /bin/clang-format --style=file -i {} ';'
+
+
+
