@@ -130,25 +130,25 @@ set $ws10 "10"
 # switch to workspace
 bindsym $mod+1 workspace Terminals
 bindsym $mod+2 workspace Firefox
-bindsym $mod+3 workspace Z3
-bindsym $mod+4 workspace Z4
-bindsym $mod+5 workspace Z5
+bindsym $mod+3 workspace Discord
+bindsym $mod+4 workspace Thunderbird
+bindsym $mod+5 workspace Spotify
 bindsym $mod+6 workspace Z6
 bindsym $mod+7 workspace Z7
-bindsym $mod+8 workspace Spotify
-bindsym $mod+9 workspace Thunderbird
-bindsym $mod+0 workspace Discord
+bindsym $mod+8 workspace Z8
+bindsym $mod+9 workspace Z9
+bindsym $mod+0 workspace Z0
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace Terminals
 bindsym $mod+Shift+2 move container to workspace Firefox
-bindsym $mod+Shift+3 move container to workspace Z3
-bindsym $mod+Shift+4 move container to workspace Z4
-bindsym $mod+Shift+5 move container to workspace Z5
+bindsym $mod+Shift+3 move container to workspace Discord
+bindsym $mod+Shift+4 move container to workspace Thunderbird
+bindsym $mod+Shift+5 move container to workspace Spotify
 bindsym $mod+Shift+6 move container to workspace Z6
 bindsym $mod+Shift+7 move container to workspace Z7
 bindsym $mod+Shift+8 move container to workspace Z8
-bindsym $mod+Shift+9 move container to workspace Thunderbird
-bindsym $mod+Shift+0 move container to workspace Discord
+bindsym $mod+Shift+9 move container to workspace Z9
+bindsym $mod+Shift+0 move container to workspace Z0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

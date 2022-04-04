@@ -9,7 +9,7 @@ URxvt*transparent: true
 URxvt.shading: 15 
 URxvt.depth: 32
 !! Font prefferenes
-urxvt.font: xft:DejaVu Sans Mono:size=12
+urxvt.font: xft:Fira Code Retina:size=12
 urxvt.letterSpace: -1
 URxvt.urlLauncher: firefox
 URxvt.underlineURLs: true

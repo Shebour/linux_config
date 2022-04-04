@@ -45,6 +45,7 @@ set cursorline
 let &t_SI = "\<esc>[6 q"  " solid I-beam in insert mode
 let &t_SR = "\<esc>[4 q"  " solid underline in replace mode
 let &t_EI = "\<esc>[2 q"  " default cursor solid block otherwise
+autocmd VimLeave * silent !echo -ne "\"
 
 command W w
 command Q q
@@ -73,6 +74,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_checkers = ['cpp/gcc']
+let g:syntastic_hh_checkers = ['cpp/gcc']
+let g:syntastic_hxx_checkers = ['cpp/gcc']
+
 let g:clang_library_path='/usr/lib64/libclang.so.3.8'
 let g:clang_format#auto_format = 1
 autocmd FileType c ClangFormatAutoEnable
