@@ -1,7 +1,0 @@
-#!/bin/sh
-#shellcheck disable=SC2015
-[ $# -ne 1 ] && echo "Usage: push <commit_msg>" && exit 1 ||
-    {
-        git commit -m "$1"
-        git push
-    }
