@@ -1,0 +1,18 @@
+#!/bin/sh
+
+alias s='sudo'
+alias pac='s pacman -Syyu'
+alias remove='s pacman -R'
+alias gdb='gdb -q'
+alias rip='s reboot'
+alias gls='g ls'
+alias ssh_vps='kitty +kitten ssh ubuntu@vps'
+alias ssh_git='kitty +kitten ssh git@vps'
+alias vg='valgrind --tool=memcheck --leak-check=yes --show-reachable=yes'
+alias gccc='gcc -g -Wall -Werror -Wextra -pedantic -std=c99'
+alias gcasan='gcc -g -fsanitize=address -Wall -Wextra -Werror -pedantic -std=c99'
+alias g+='g++ -g -Wall -Werror -Wextra -pedantic -std=c++20'
+alias g+a='g++ -g -fsanitize=address -Wall -Wextra -Werror -pedantic -std=c++20'
+alias ssh-a='eval `ssh-agent` && ssh-add'
+alias dock='docker-compose'
+alias cat='bat'
