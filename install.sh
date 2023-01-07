@@ -20,7 +20,7 @@ light_magenta="\033[95m"
 light_cyan="\033[96m"
 white="\033[97m"
 
-CONFIG="$HOME/config"
+CONFIG="$HOME/linux_config"
 DOTFILES="$CONFIG/dotfiles"
 XDG_CONFIG_HOME="$HOME/.config"
 CONFIGFILES="$CONFIG/configfiles"

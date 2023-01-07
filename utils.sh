@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 die() {
     printf "\033[0;31m${@}\033[0m\n"
     return 1

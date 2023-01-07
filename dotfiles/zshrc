@@ -2,9 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export CONFIG_FILES="$HOME/config"
-export XDG_CONFIG_HOME="$HOME/.config"
+export ZSH="/home/shebour/.oh-my-zsh"
+export CONFIG_LINUX_FILES="/home/shebour/linux_config"
+export XDG_CONFIG_HOME="/home/shebour/.config"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -76,8 +76,8 @@ ZSH_DISABLE_COMPFIX="true"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting python sudo)
 
 source $ZSH/oh-my-zsh.sh
-source $CONFIG_FILES/utils.sh
-source $CONFIG_FILES/aliases
+source $CONFIG_LINUX_FILES/utils.sh
+source $CONFIG_LINUX_FILES/aliases
 
 # User configuration
 
@@ -105,5 +105,6 @@ source $CONFIG_FILES/aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH="$PATH:/home/shebour/.local/share/JetBrains/Toolbox/scripts"
 export PATH=/home/shebour/.local/bin:$PATH
 command echo "Hello Shebour!" | cowsay | lolcat

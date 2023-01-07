@@ -1,10 +1,9 @@
 #!/bin/sh
 
-set -e
-
+alias fixbuginclude='compiledb make -Bn'
 alias s='sudo'
 alias pac='s pacman -Syyu'
-alias remove='s pacman -R'
+alias remove='s pacman -Rns'
 alias gdb='gdb -q'
 alias rip='s reboot'
 alias gls='g ls'
@@ -18,3 +17,4 @@ alias g+a='g++ -g -fsanitize=address -Wall -Wextra -Werror -pedantic -std=c++20'
 alias ssh-a='eval `ssh-agent` && ssh-add'
 alias dock='docker-compose'
 alias cat='bat'
+alias ssh_pi='kitty +kitten ssh pi@raspberry'

@@ -161,7 +161,8 @@ exec --no-startup-id guake
 # setup background
 exec feh --bg-fill /home/shebour/Pictures/image.png
 # setup monitors position
-exec xrandr --output HDMI-0 --left-of DP-0 --primary
+exec xrandr --output HDMI-1 --left-of DP-2
+exec xrandr --output DP-2 --primary
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -197,8 +198,8 @@ bar {
             focused_workspace   #000000 #000000 #FFFFFF
     }
     font pango:Fira Code 10
-        status_command bumblebee-status -m spotify nic cpu sensors disk memory date time -p datetime.local="fr_FR.UTF-8" sensors.use_sensors='true' nic.states=^down -t night-powerline
-        position top
+    status_command bumblebee-status -m spotify nic cpu sensors disk memory date time -p datetime.local="fr_FR.UTF-8" sensors.use_sensors='true' nic.states=^down -t night-powerline
+    position top
 }
 
 smart_borders on
