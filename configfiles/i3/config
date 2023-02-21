@@ -161,8 +161,8 @@ exec --no-startup-id guake
 # setup background
 exec feh --bg-fill /home/shebour/Pictures/image.png
 # setup monitors position
-exec xrandr --output HDMI-1 --right-of DP-2
 exec xrandr --output DP-2 --primary
+exec xrandr --output HDMI-0 --right-of DP-2
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
