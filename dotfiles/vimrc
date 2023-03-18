@@ -77,8 +77,6 @@ let g:coc_global_extensions = [
             \ 'coc-prettier',
             \ 'coc-json',
             \ 'coc-sh',
-            \ 'coc-html',
-            \ 'coc-css',
             \ 'coc-pyright',
             \ 'coc-java',
             \ 'coc-cmake',

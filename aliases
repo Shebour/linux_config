@@ -1,12 +1,13 @@
 #!/bin/sh
 
+alias vim='nvim'
 alias fixbuginclude='compiledb make -Bn'
 alias s='sudo'
 alias update='s pacman -Syyu'
 alias install='s pacman -S'
 alias remove='s pacman -Rns'
 alias gdb='gdb -q'
-alias rip='s reboot'
+alias rip='shutdown -h now'
 alias gls='g ls'
 alias ssh_vps='kitty +kitten ssh ubuntu@vps'
 alias ssh_git='kitty +kitten ssh git@vps'

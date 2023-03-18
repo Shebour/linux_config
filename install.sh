@@ -47,11 +47,26 @@ install_dot_files()
 
 install_config_files()
 {
-    cp "$CONFIGFILES/i3/config" "$XDG_CONFIG_HOME/i3/"
-    myprint "$XDG_CONFIG_HOME/i3/config created"
-    cp "$CONFIGFILES/kitty/kitty.conf" "$XDG_CONFIG_HOME/kitty/"
-    myprint "$XDG_CONFIG_HOME/kitty/kitty.conf created"
+	if [ -d "$HOME/.i3/" ]; then
+		rm -rf "$HOME/.i3/"
+	fi
+	#mkdir "$HOME/.i3/"
+	ln -sfF "$CONFIGFILES/i3/" "$HOME/.i3"
+	#cp -r "$CONGFILES/i3/" "$HOME/.i3"
+	myprint "$HOME/.i3/config created"
+	if [ -d "$XDG_CONFIG_HOME/kitty" ]; then
+		rm -rf "$XDG_CONFIG_HOME/kitty/"
+	fi
+	ln -sfF "$CONFIGFILES/kitty/" "$XDG_CONFIG_HOME/kitty"
+	#cp -r "$CONFIGFILES/kitty/" "$XDG_CONFIG_HOME"
+	myprint "$XDG_CONFIG_HOME/kitty/kitty.conf created"
 
+	if [ -d "$XDG_CONFIG_HOME/nvim" ]; then
+		rm -rf "$XDG_CONFIG_HOME/nvim/"
+	fi
+	ln -sfF "$CONFIGFILES/nvim/" "$XDG_CONFIG_HOME/nvim"
+	#cp -r "$CONFIGFILES/nvim/" "$XDG_CONFIG_HOME"
+	myprint "$XDG_CONFIG_HOME/nvim/ created"
 }
 
 install_dot_files
