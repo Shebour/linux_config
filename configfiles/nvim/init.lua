@@ -10,6 +10,59 @@ local ensure_packer = function()
 end
 local packer_bootstrap = ensure_packer()
 
+require("packer").startup(function(use)
+	use({ "wbthomason/packer.nvim" })
+
+	-- Theming
+	use({ "joshdick/onedark.vim" })
+	use({ "kyazdani42/nvim-web-devicons" })
+	use({ "nvim-lualine/lualine.nvim" })
+	use({ "lukas-reineke/indent-blankline.nvim" })
+
+	-- File explorer
+	use({ "kyazdani42/nvim-tree.lua" })
+
+	-- Git
+	use({ "lewis6991/gitsigns.nvim" })
+	use({ "tpope/vim-fugitive" })
+
+	-- Code manipulation
+	use({ "numToStr/Comment.nvim" })
+	use({ "nvim-treesitter/nvim-treesitter" })
+	use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
+	use({ "tpope/vim-repeat" }) -- api for repeat command
+	use({ "tpope/vim-surround" }) -- cs"' ds" yssb ysiw]
+	use({ "wellle/targets.vim" }) -- add more text objects
+
+	-- Utilities
+	use({ "editorconfig/editorconfig-vim" })
+	use({ "tpope/vim-eunuch" })
+	use({ "nvim-lua/plenary.nvim" })
+
+	-- LSP support
+	use({ "neovim/nvim-lspconfig" })
+	use({ "williamboman/mason.nvim" })
+	use({ "jose-elias-alvarez/null-ls.nvim" })
+	use({ "jayp0521/mason-null-ls.nvim" })
+	use({ "williamboman/mason-lspconfig.nvim" })
+
+	-- Autocomplete
+	use({ "hrsh7th/nvim-cmp" })
+	use({ "hrsh7th/cmp-buffer" })
+	use({ "hrsh7th/cmp-path" })
+	use({ "saadparwaiz1/cmp_luasnip" })
+	use({ "hrsh7th/cmp-nvim-lsp" })
+
+	-- Snippets
+	use({ "L3MON4D3/LuaSnip" })
+	use({ "rafamadriz/friendly-snippets" })
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if packer_bootstrap then
+		require("packer").sync()
+	end
+end)
+
 vim.opt.number = true
 vim.opt.mouse = "a"
 vim.opt.ignorecase = true
@@ -477,55 +530,3 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 })
-
-return require("packer").startup(function(use)
-	use({ "wbthomason/packer.nvim" })
-
-	-- Theming
-	use({ "joshdick/onedark.vim" })
-	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "nvim-lualine/lualine.nvim" })
-	use({ "lukas-reineke/indent-blankline.nvim" })
-
-	-- File explorer
-	use({ "kyazdani42/nvim-tree.lua" })
-
-	-- Git
-	use({ "lewis6991/gitsigns.nvim" })
-	use({ "tpope/vim-fugitive" })
-
-	-- Code manipulation
-	use({ "numToStr/Comment.nvim" })
-	use({ "nvim-treesitter/nvim-treesitter" })
-	use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
-	use({ "tpope/vim-repeat" }) -- api for repeat command
-	use({ "tpope/vim-surround" }) -- cs"' ds" yssb ysiw]
-	use({ "wellle/targets.vim" }) -- add more text objects
-
-	-- Utilities
-	use({ "editorconfig/editorconfig-vim" })
-	use({ "tpope/vim-eunuch" })
-
-	-- LSP support
-	use({ "neovim/nvim-lspconfig" })
-	use({ "williamboman/mason.nvim" })
-	use({ "jose-elias-alvarez/null-ls.nvim" })
-	use({ "jayp0521/mason-null-ls.nvim" })
-	use({ "williamboman/mason-lspconfig.nvim" })
-
-	-- Autocomplete
-	use({ "hrsh7th/nvim-cmp" })
-	use({ "hrsh7th/cmp-buffer" })
-	use({ "hrsh7th/cmp-path" })
-	use({ "saadparwaiz1/cmp_luasnip" })
-	use({ "hrsh7th/cmp-nvim-lsp" })
-
-	-- Snippets
-	use({ "L3MON4D3/LuaSnip" })
-	use({ "rafamadriz/friendly-snippets" })
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)
