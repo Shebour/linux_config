@@ -483,6 +483,7 @@ require("mason-lspconfig").setup_handlers({
 
 return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim" })
+  use({ "Fymyte/hept.vim"})
 
   -- Theming
   use({ "joshdick/onedark.vim" })
