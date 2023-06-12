@@ -7,7 +7,7 @@ die() {
 
 clang-format-c()
 {
-    clang_format_file="${PWD}/.clang-format"
+    clang_format_file="${PWD}/.clang-format-c"
     if ! test -f "${clang_format_file}"; then
         die "Failed to find clang-format configuration at ${clang_format_file}"
     fi
@@ -18,7 +18,7 @@ clang-format-c()
 
 clang-format-cpp()
 {
-    clang_format_file="${PWD}/.clang-format"
+    clang_format_file="${PWD}/.clang-format-cpp"
     if ! test -f "${clang_format_file}"; then
         die "Failed to find clang-format configuration at ${clang_format_file}"
     fi

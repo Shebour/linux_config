@@ -184,7 +184,28 @@ _ls.add_snippets(nil, {
 ---
 -- nvim-cmp (autocomplete)
 ---
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local handlers = require('nvim-autopairs.completion.handlers')
 local cmp = require("cmp")
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done(
+  {
+    filetypes = {
+      -- "*" is a alias to all filetypes
+      ["*"] = {
+        ["("] = {
+          kind = {
+            cmp.lsp.CompletionItemKind.Function,
+            cmp.lsp.CompletionItemKind.Method,
+          },
+          handler = handlers["*"]
+        }
+      }
+    }
+  })
+  )
+
 local luasnip = require("luasnip")
 
 local select_opts = { behavior = cmp.SelectBehavior.Select }
@@ -528,6 +549,7 @@ return require("packer").startup(function(use)
   -- Snippets
   use({ "L3MON4D3/LuaSnip" })
   use({ "rafamadriz/friendly-snippets" })
+  use({ "windwp/nvim-autopairs",config = function() require("nvim-autopairs").setup {} end})
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
