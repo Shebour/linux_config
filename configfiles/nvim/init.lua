@@ -10,6 +10,7 @@ local ensure_packer = function()
 end
 local packer_bootstrap = ensure_packer()
 
+
 vim.opt.number = true
 vim.opt.mouse = "a"
 vim.opt.ignorecase = true
@@ -36,15 +37,29 @@ vim.opt.autoread = true
 vim.opt.autowrite = true
 vim.opt.updatetime = 2000
 vim.opt.guicursor = "n-v:block,i:ver10,r:hor10"
-vim.g.mapleader = " "
+vim.opt.timeoutlen = 2000
+vim.g.mapleader = "`"
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>")
 vim.keymap.set("n", "<leader>q", ":wq<cr>")
+
+vim.keymap.set("n", "te", ":ToggleTerm direction=float<CR>", {buffer = true})
 vim.g.nvim_tree_respect_buf_cwd = 1
+
+---
+-- Telescope
+---
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+
 ---
 -- Colorscheme
 ---
 vim.opt.termguicolors = true
-vim.cmd("colorscheme onedark")
+vim.cmd("colorscheme catppuccin")
 
 ---
 -- lualine.nvim (statusline)
@@ -57,8 +72,40 @@ require("lualine").setup({
     theme = "onedark",
     icons_enabled = true,
     component_separators = "|",
-    section_separators = "",
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
   },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'filesize', 'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
 })
 
 ---
@@ -89,6 +136,8 @@ require("nvim-treesitter.configs").setup({
     "python",
     "c",
     "cpp",
+    "ada",
+    "rust",
   },
 })
 
@@ -184,6 +233,7 @@ _ls.add_snippets(nil, {
 ---
 -- nvim-cmp (autocomplete)
 ---
+
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local handlers = require('nvim-autopairs.completion.handlers')
 local cmp = require("cmp")
@@ -208,7 +258,7 @@ cmp.event:on(
 
 local luasnip = require("luasnip")
 
-local select_opts = { behavior = cmp.SelectBehavior.Select }
+-- local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 -- See :help cmp-config
 cmp.setup({
@@ -269,7 +319,6 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-
     ["<Tab>"] = cmp.mapping(function(fallback)
       local col = vim.fn.col(".") - 1
 
@@ -478,13 +527,17 @@ null_ls.setup()
 
 require("mason-lspconfig").setup({
   ensure_installed = {
+    "als",
     "bashls",
     "clangd",
     "pyright",
     "cmake",
     "quick_lint_js",
+    "rust_analyzer",
   },
 })
+
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 -- See :help mason-lspconfig-dynamic-server-setup
@@ -504,14 +557,14 @@ require("mason-lspconfig").setup_handlers({
 
 return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim" })
-  use({ "Fymyte/hept.vim"})
 
   -- Theming
   use({ "joshdick/onedark.vim" })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "nvim-lualine/lualine.nvim" })
+  use({ "nvim-lualine/lualine.nvim", requires = { 'nvim-tree/nvim-web-devicons', opt = true } })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "pangloss/vim-javascript"})
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- File explorer
   use({ "kyazdani42/nvim-tree.lua" })
@@ -530,7 +583,10 @@ return require("packer").startup(function(use)
 
   -- Utilities
   use({ "editorconfig/editorconfig-vim" })
-  use({ "tpope/vim-eunuch" })
+  -- use({ "tpope/vim-eunuch" })
+  use({'nvim-telescope/telescope.nvim', tag = '0.1.2', requires = { {'nvim-lua/plenary.nvim'}}})
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  require("toggleterm").setup {} end}
 
   -- LSP support
   use({ "neovim/nvim-lspconfig" })
@@ -550,6 +606,7 @@ return require("packer").startup(function(use)
   use({ "L3MON4D3/LuaSnip" })
   use({ "rafamadriz/friendly-snippets" })
   use({ "windwp/nvim-autopairs",config = function() require("nvim-autopairs").setup {} end})
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
