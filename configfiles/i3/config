@@ -290,6 +290,7 @@ exec --no-startup-id start_conky_maia
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id guake
+exec --no-startup-id setxkbmap -layout us -variant intl
 exec --no-startup-id ckb-next -b
 exec --no-startup-id xrandr --output DP-2 --primary --left-of HDMI-0
 
