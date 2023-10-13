@@ -40,9 +40,9 @@ vim.opt.guicursor = "n-v:block,i:ver10,r:hor10"
 vim.opt.timeoutlen = 2000
 vim.g.mapleader = "`"
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>")
-vim.keymap.set("n", "<leader>q", ":wq<cr>")
+-- vim.keymap.set("n", "<leader>q", ":wq<cr>")
 
-vim.keymap.set("n", "te", ":ToggleTerm direction=float<CR>", {buffer = true})
+vim.keymap.set("n", "<leader>q", ":ToggleTerm direction=float<CR>", {buffer = true})
 vim.g.nvim_tree_respect_buf_cwd = 1
 
 ---
@@ -149,7 +149,7 @@ require("Comment").setup({})
 ---
 -- Indent-blankline
 ---
--- See :help indent-blankline-setup
+-- See :help ibl.setup()
 require("indent_blankline").setup({
   char = "▏",
   show_trailing_blankline_indent = false,
@@ -562,7 +562,7 @@ return require("packer").startup(function(use)
   use({ "joshdick/onedark.vim" })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-lualine/lualine.nvim", requires = { 'nvim-tree/nvim-web-devicons', opt = true } })
-  use({ "lukas-reineke/indent-blankline.nvim" })
+  use({ "lukas-reineke/indent-blankline.nvim", tag = 'v2.20.8'})
   use({ "pangloss/vim-javascript"})
   use { "catppuccin/nvim", as = "catppuccin" }
 
