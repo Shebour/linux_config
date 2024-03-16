@@ -105,9 +105,7 @@ source $CONFIG_LINUX_FILES/aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$PATH:/home/shebour/.local/share/JetBrains/Toolbox/scripts"
 export PATH=/home/shebour/.local/bin:$PATH
-export PATH=/opt/intelFPGA/20.1/modelsim_ase/bin/:$PATH
 command echo "Hello Shebour!" | cowsay | lolcat
 
 # opam configuration
