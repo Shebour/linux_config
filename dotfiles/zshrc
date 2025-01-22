@@ -106,7 +106,6 @@ source $CONFIG_LINUX_FILES/aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH=/home/shebour/.local/bin:$PATH
-command echo "Hello Shebour!" | cowsay | lolcat
 
 # opam configuration
 [[ ! -r /home/shebour/.opam/opam-init/init.zsh ]] || source /home/shebour/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
