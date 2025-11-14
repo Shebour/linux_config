@@ -461,73 +461,11 @@ require("mason").setup({
 })
 
 ---
--- Null-Ls
----
-
-local null_ls = require("null-ls")
-
-local augroup_lspfmt = vim.api.nvim_create_augroup("LspFormatting", {})
-null_ls.setup({
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup_lspfmt, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup_lspfmt,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
-        end,
-      })
-    end
-  end,
-})
-
----
--- Mason-Null-Ls
----
-
-require("mason-null-ls").setup({
-  ensure_installed = {
-    "beautysh",
-    "buf",
-    "clang_format",
-    "codespell",
-    "stylua",
-    "trim_whitespace",
-    "black",
-  },
-})
-
-
-require("mason-null-ls").setup({
-  function(src_name, methods)
-    require("mason-null-ls.automatic_setup")(src_name, methods)
-  end,
-  stylua = function()
-    null_ls.register(null_ls.builtins.formatting.stylua)
-  end,
-  clang_format = function()
-    null_ls.register(null_ls.builtins.formatting.clang_format.with({
-      filetypes = { "c", "cpp" },
-      extra_args = { "-stype=/home/shebour/.clang-format" },
-    }))
-  end,
-  codespell = function()
-    null_ls.register(null_ls.builtins.formatting.codespell.with({
-      disabled_filetypes = { "md" },
-    }))
-  end,
-})
-
-null_ls.setup()
-
----
 -- Mason-Lspconfig
 ---
 
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "als",
     "bashls",
     "clangd",
     "pyright",
@@ -535,24 +473,6 @@ require("mason-lspconfig").setup({
     "quick_lint_js",
     "rust_analyzer",
   },
-})
-
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.offsetEncoding = { "utf-16" }
--- See :help mason-lspconfig-dynamic-server-setup
-require("mason-lspconfig").setup_handlers({
-  function(server)
-    -- See :help lspconfig-setup
-    lspconfig[server].setup({})
-  end,
-  ["clangd"] = function()
-    lspconfig.clangd.setup({
-      cmd = { "clangd", "--header-insertion=never" },
-      filetypes = { "c", "cpp" },
-      capabilities = capabilities,
-    })
-  end,
 })
 
 return require("packer").startup(function(use)
@@ -591,8 +511,8 @@ return require("packer").startup(function(use)
   -- LSP support
   use({ "neovim/nvim-lspconfig" })
   use({ "williamboman/mason.nvim" })
-  use({ "jose-elias-alvarez/null-ls.nvim" })
-  use({ "jayp0521/mason-null-ls.nvim" })
+  --use({ "jose-elias-alvarez/null-ls.nvim" })
+  --use({ "jayp0521/mason-null-ls.nvim" })
   use({ "williamboman/mason-lspconfig.nvim" })
 
   -- Autocomplete
